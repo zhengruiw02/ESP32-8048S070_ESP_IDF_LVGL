@@ -12,6 +12,7 @@
 #include "freertos/task.h"
 #include "lvgl.h"
 #include "sdkconfig.h"
+#include "bsp_esp32_8048S070C.h"
 
 #if CONFIG_EXAMPLE_LCD_TOUCH_ENABLED
 #include "driver/i2c.h"
@@ -46,10 +47,6 @@ const gpio_num_t PIN_NUM_DATA13 = GPIO_NUM_47; // R2
 const gpio_num_t PIN_NUM_DATA14 = GPIO_NUM_48; // R3
 const gpio_num_t PIN_NUM_DATA15 = GPIO_NUM_45; // R4
 const gpio_num_t PIN_NUM_DISP_EN = GPIO_NUM_NC;
-
-// The pixel number in horizontal and vertical
-#define LCD_H_RES (800)
-#define LCD_V_RES (480)
 
 #if CONFIG_EXAMPLE_DOUBLE_FB
 #define LCD_NUM_FB 2
@@ -189,7 +186,7 @@ static void tft_panel_init(void)
    .bits_per_pixel = (uint8_t)NULL,
    .num_fbs = LCD_NUM_FB,
 #if CONFIG_EXAMPLE_USE_BOUNCE_BUFFER
-   .bounce_buffer_size_px = 10 * h_resolution,
+   .bounce_buffer_size_px = 10 * LCD_H_RES,
 #else
    .bounce_buffer_size_px = (size_t)NULL,
 #endif
@@ -370,7 +367,7 @@ lv_disp_t *bsp_lvgl_get_disp(void)
   return disp;
 }
 
-void bsp_init(void)
+void bsp_8048S070C_init(void)
 {
     tft_panel_init();
     touch_panel_init();

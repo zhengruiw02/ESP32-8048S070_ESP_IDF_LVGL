@@ -1,5 +1,9 @@
 ## IDF Component Manager Manifest File
 dependencies:
+  # wolfssl/wolfssh: "^1.4.15-stable-preview6"
+  espressif/usb_host_hid: "^1.0.2"
+  espressif/console_cmd_ping: "^1.0.0"
+  espressif/console_cmd_wifi: "^1.0.1"
   espressif/esp_lcd_touch_gt911: "^1.1.0"
   lvgl/lvgl: "^8.4.0"
   ## Required IDF version
